@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BodyMetric Pro | Health Analyzer & Educator</title>
+     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+     
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <h1><i class="fas fa-heartbeat"></i> BodyMetric Pro</h1>
+            <p class="subtitle">Understand your body • Improve your health</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Calculator Section -->
+            <div class="calculator-section">
+                <!-- Gender Selector -->
+                <div class="gender-selector">
+                    <button class="gender-btn active" id="male-btn"><i class="fas fa-mars"></i> Male</button>
+                    <button class="gender-btn" id="female-btn"><i class="fas fa-venus"></i> Female</button>
+                </div>
+
+                <!-- Input Fields -->
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="age">Age <span class="info-icon" data-metric="age">ⓘ</span></label>
+                        <input type="number" id="age" placeholder="e.g., 30">
+                    </div>
+                    <div class="input-group">
+                        <label for="weight">Weight (kg) <span class="info-icon" data-metric="weight">ⓘ</span></label>
+                        <input type="number" id="weight" placeholder="e.g., 70">
+                    </div>
+                    <div class="input-group">
+                        <label for="height">Height (cm) <span class="info-icon" data-metric="height">ⓘ</span></label>
+                        <input type="number" id="height" placeholder="e.g., 175">
+                    </div>
+                    <div class="input-group">
+                        <label for="waist">Waist (cm) <span class="info-icon" data-metric="waist">ⓘ</span></label>
+                        <input type="number" id="waist" placeholder="e.g., 80">
+                    </div>
+                    <div class="input-group" id="hip-group">
+                        <label for="hip">Hip (cm) <span class="info-icon" data-metric="hip">ⓘ</span></label>
+                        <input type="number" id="hip" placeholder="e.g., 95">
+                    </div>
+                    <div class="input-group">
+                        <label for="activity">Activity Level <span class="info-icon" data-metric="activity">ⓘ</span></label>
+                        <select id="activity">
+                            <option value="1.2">Sedentary (Little/no exercise)</option>
+                            <option value="1.375">Lightly Active (1-3 days/week)</option>
+                            <option value="1.55">Moderately Active (3-5 days/week)</option>
+                            <option value="1.725">Very Active (6-7 days/week)</option>
+                            <option value="1.9">Extremely Active (Athlete)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button id="calculate-btn"><i class="fas fa-calculator"></i> Calculate My Health Metrics</button>
+
+                <!-- Results Dashboard -->
+                <div class="results-dashboard">
+                    <div class="metric-card" data-metric="bmi">
+                        <h3><i class="fas fa-weight"></i> BMI <span class="info-icon">ⓘ</span></h3>
+                        <p id="bmi-value">--</p>
+                        <p id="bmi-category" class="category">--</p>
+                    </div>
+                    <div class="metric-card" data-metric="bodyfat">
+                        <h3><i class="fas fa-percentage"></i> Body Fat <span class="info-icon">ⓘ</span></h3>
+                        <p id="bodyfat-value">--%</p>
+                        <p id="bodyfat-category" class="category">--</p>
+                    </div>
+                    <div class="metric-card" data-metric="whr">
+                        <h3><i class="fas fa-ruler-combined"></i> WHR <span class="info-icon">ⓘ</span></h3>
+                        <p id="whr-value">--</p>
+                        <p id="whr-category" class="category">--</p>
+                    </div>
+                    <div class="metric-card" data-metric="bmr">
+                        <h3><i class="fas fa-fire"></i> BMR <span class="info-icon">ⓘ</span></h3>
+                        <p id="bmr-value">-- kcal</p>
+                        <p class="category">Daily Calories (Rest)</p>
+                    </div>
+                </div>
+
+                <!-- Advanced Insights -->
+                <div class="advanced-insights">
+                    <h2><i class="fas fa-chart-line"></i> Your Personalized Health Report</h2>
+                    <div id="health-tips"></div>
+                    <div id="macronutrients"></div>
+                    <div id="hydration"></div>
+                    <div id="ideal-weight"></div>
+                </div>
+
+                <button id="print-btn"><i class="fas fa-print"></i> Print Full Report</button>
+            </div>
+
+            <!-- Education Sidebar -->
+            <div class="education-sidebar">
+                <h2><i class="fas fa-book-open"></i> Health Metrics Guide</h2>
+                
+                <div class="metric-info active" id="bmi-info">
+                    <h3>BMI (Body Mass Index)</h3>
+                    <p>A measure of body fat based on height and weight.</p>
+                    <div class="bmi-chart">
+                        <p><strong>Underweight:</strong> < 18.5</p>
+                        <p><strong>Normal:</strong> 18.5 - 24.9</p>
+                        <p><strong>Overweight:</strong> 25 - 29.9</p>
+                        <p><strong>Obese:</strong> 30+</p>
+                    </div>
+                    <p class="disclaimer">Note: BMI doesn't account for muscle mass.</p>
+                </div>
+
+                <div class="metric-info" id="bodyfat-info">
+                    <h3>Body Fat Percentage</h3>
+                    <p>The proportion of fat to total body weight.</p>
+                    <div class="gender-charts">
+                        <div>
+                            <h4>Men</h4>
+                            <p><strong>Athletic:</strong> 6-13%</p>
+                            <p><strong>Fit:</strong> 14-17%</p>
+                            <p><strong>Average:</strong> 18-24%</p>
+                            <p><strong>High:</strong> 25%+</p>
+                        </div>
+                        <div>
+                            <h4>Women</h4>
+                            <p><strong>Athletic:</strong> 14-20%</p>
+                            <p><strong>Fit:</strong> 21-24%</p>
+                            <p><strong>Average:</strong> 25-31%</p>
+                            <p><strong>High:</strong> 32%+</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-info" id="whr-info">
+                    <h3>Waist-to-Hip Ratio (WHR)</h3>
+                    <p>Measures fat distribution (important for heart health).</p>
+                    <div class="gender-charts">
+                        <div>
+                            <h4>Men</h4>
+                            <p><strong>Low Risk:</strong> < 0.90</p>
+                            <p><strong>High Risk:</strong> ≥ 0.90</p>
+                        </div>
+                        <div>
+                            <h4>Women</h4>
+                            <p><strong>Low Risk:</strong> < 0.85</p>
+                            <p><strong>High Risk:</strong> ≥ 0.85</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="metric-info" id="bmr-info">
+                    <h3>BMR (Basal Metabolic Rate)</h3>
+                    <p>Calories your body needs at complete rest.</p>
+                    <p><strong>TDEE</strong> (Total Daily Energy Expenditure) is BMR × activity level.</p>
+                    <div class="activity-levels">
+                        <p><strong>Sedentary:</strong> BMR × 1.2</p>
+                        <p><strong>Light Activity:</strong> BMR × 1.375</p>
+                        <p><strong>Moderate Activity:</strong> BMR × 1.55</p>
+                        <p><strong>Very Active:</strong> BMR × 1.725</p>
+                        <p><strong>Extreme Activity:</strong> BMR × 1.9</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Modal -->
+        <div class="info-modal" id="info-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3 id="modal-title">Metric Information</h3>
+                <p id="modal-text">Loading information...</p>
+            </div>
+        </div>
+    </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
